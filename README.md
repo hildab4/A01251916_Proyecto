@@ -1,2 +1,2 @@
 # Proyecto Integrador
-El proyecto se basa en conocer la capacidad de los hospitales en las diferentes secciones, como lo es el área de Covid, Urgencias, Quirófano, y General. De esta manera, el hospital puede dar de alta y baja a pacientes, mientras que el usuario puede consultar los espacios disponibles en cada uno. Además de conocer datos importantes como el teléfono, la dirección y nombre del hospital que está consultando. 
+El proyecto se basa en conocer la capacidad de un hospital en las distinas secciones, como lo es el área de Covid, Urgencias, Quirófano, y General. De esta manera, el hospital puede dar de alta y baja a pacientes, mientras que el usuario puede consultar los espacios disponibles en cada uno. 
