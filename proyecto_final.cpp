@@ -1,7 +1,7 @@
 //Hilda Beltrán Acosta A01251916
 #include <iostream>
 #include "hospital.h"
-
+ 
 using namespace std;
 
 int main(){
