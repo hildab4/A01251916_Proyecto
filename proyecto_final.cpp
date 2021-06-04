@@ -1,4 +1,10 @@
-//Hilda Beltrán Acosta A01251916
+/*
+* Hilda Beltrán Acosta 
+* A01251916
+* Disponibilidad Hospital
+* 
+* Incluye hospital.h
+*/
 #include <iostream>
 #include "hospital.h"
  
@@ -13,9 +19,9 @@ int main(){
     hospital1.actualiza_pacientes("Covid", "1", 15);
     cout << "Actualizado Covid\n" << hospital1.consulta_capacidad("Covid") << 
     "%  disponible\n" << endl;
-    cout << "Actualizado General\n" << hospital1.consulta_capacidad("General") << 
-    "%  disponible\n" << endl;
+    cout << "Actualizado General\n" << hospital1.consulta_capacidad("General") 
+    << "%  disponible\n" << endl;
     hospital1.actualiza_pacientes("General", "2", 15);
-    cout << "Actualizado General\n" << hospital1.consulta_capacidad("General") << 
-    "%  disponible\n" << endl;
+    cout << "Actualizado General\n" << hospital1.consulta_capacidad("General")
+    << "%  disponible\n" << endl;
 }

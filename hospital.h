@@ -1,4 +1,10 @@
-//Hilda Beltrán Acosta A01251916
+/*
+* Hilda Beltrán Acosta 
+* A01251916
+* Disponibilidad Hospital
+* 
+* Incluye departamento.h
+*/
 #ifndef HOSPITAL_H
 #define HOSPITAL_H
 #include <iostream>
@@ -6,6 +12,13 @@
  
 using namespace std;
 
+/*
+ * Dentro de esta clase se define el objeto de tipo Departamento, donde se
+ * crean los objetos de las clases heredadas por la clase abstracta 
+ * Departamento. Aquí se mandan a llamar a las funciones para calcular las
+ * capacidades para cada departamento del hospital, de igual manera se agregan
+ * y quitan pacientes de las secciones.
+*/
 class Hospital{
     private:
         string clave, nombre, direccion, telefono;
@@ -34,13 +47,24 @@ Hospital::Hospital(string c, string n, string d, string t){
     telefono = t;
 }
 
+/**
+ * Esta función toma los datos del objeto de clase Hospital para desplegarlos
+ * en la consola
+ * 
+ * @param
+ * @return
+ */
 void Hospital::bienvenida(){
-    cout << "\n\nBienvenido al hospital " << nombre << "!" << endl << "Clave: " << 
-    clave << endl << "Dirección: " << direccion << endl << "Teléfono: " <<
+    cout << "\n\nBienvenido al hospital " << nombre << "!" << endl << "Clave: "
+    << clave << endl << "Dirección: " << direccion << endl << "Teléfono: " <<
     telefono << endl << endl << endl;
 }
 
-//Crea ejemplos dentro del arreglo de clase Departamento
+/** Esta función crea ejemplos dentro del arreglo de clase Departamento
+ * 
+ * @param
+ * @return
+ */
 void Hospital::genera_ejemplos(){
     int i = 0;
     depto[i] = new Covid("Covid", "Norte", "1000", "284", "Fiebre");
@@ -53,8 +77,14 @@ void Hospital::genera_ejemplos(){
     i ++;
 } 
 
-//Recorre el arreglo buscando coincidencia en el tipo de departemento
-//Llama a la función para agregar o quitar dependiendo de la opción seleccionada
+/**
+ * Recorre el arreglo buscando coincidencia en el tipo de departemento, al
+ * encontrarlo llama a la función para agregar o quitar en base a la opción 
+ * seleccionada
+ * 
+ * @param string t, string opc, int num
+ * @return
+ */
 void Hospital::actualiza_pacientes(string t, string opc, int num){
     if(opc == "1"){
         for(int i = 0; i < sizeof(depto)/sizeof(depto[0]); i ++){
@@ -72,8 +102,12 @@ void Hospital::actualiza_pacientes(string t, string opc, int num){
     }
 }
 
-//Recorre el arreglo buscando coincidencia en el tipo de departemento
-//Calcula el porcentaje de espacios libres
+/**
+ * Recorre el arreglo buscando coincidencia en el tipo de departemento, al
+ * encontrarlo calcula el porcentaje de espacios libres
+ * @param string t
+ * @return float con el porcentaje de espacios disponibles
+ */
 float Hospital::consulta_capacidad(string t){
     for(int i = 0; i < sizeof(depto)/sizeof(depto[0]); i ++){
         if(depto[i] -> get_tipo() == t){
