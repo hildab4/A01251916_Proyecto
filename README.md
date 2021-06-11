@@ -9,5 +9,5 @@ Las opciones de descripciones son las siguientes: Covid (Fiebre, Tos Seca, Cansa
 # Consideraciones
 El programa corre en la consola
 Compila con "g++ -std=c++17 proyecto_final.cpp"
-Corre con "./a.out" 
+Corre en macOS con "./a.out" 
 Puede correr en cualquier sistema operativo, ya que está hecho con c++ standard.
