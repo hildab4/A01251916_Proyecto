@@ -6,6 +6,7 @@
 #ifndef DEPARTAMENTO_H
 #define DEPARTAMENTO_H
 #include <iostream>
+#include <array>
  
 using namespace std;
 
@@ -28,8 +29,8 @@ class Departamento{
         string get_tipo(){ return tipo;}
         string get_capacidad(){ return capacidad;}
         string get_ala(){ return ala;}
-        virtual int agregar_pacientes(int num) = 0;
-        virtual int quitar_pacientes(int num) = 0;
+        virtual int agregar_pacientes(int num, string s) = 0;
+        virtual int quitar_pacientes(int num, string s) = 0;
         virtual float porcentaje_ocupacion() = 0;
 };
 
@@ -48,23 +49,21 @@ Departamento::Departamento(string t, string a, string c){
 */
 class Covid : public Departamento{
     private:
-        string sint[3] = {"Fiebre", "Tos seca", "Cansancio"}, sintoma, 
+        string sint[3] = {"Fiebre", "Tos seca", "Cansancio"}, 
         ocupacionCovid;
 
     public:
         //Constructor por default
         Covid(): Departamento("", "", "") {};
         //Sobrecarga del constructor por default
-        Covid(string t, string a, string c, string o, string s) : 
+        Covid(string t, string a, string c, string o) : 
         Departamento(t, a, c){
             ocupacionCovid = o;
-            sintoma = s;
         };
         //getters para los atributos privados
-        string get_sintoma(){ return sintoma;}
         string* get_sintomas(){ return sint;}
-        int agregar_pacientes(int num);
-        int quitar_pacientes(int num);
+        int agregar_pacientes(int num, string s);
+        int quitar_pacientes(int num, string s);
         float porcentaje_ocupacion();
 };
 
@@ -74,11 +73,12 @@ class Covid : public Departamento{
 * @param int num con la cantidad de pacientes a agregar
 * @return int ocupacionCovid con la cantidad de espacios ocupados
 */
-int Covid::agregar_pacientes(int num){
+int Covid::agregar_pacientes(int num, string sintoma){
     for(int i = 0; i < sizeof(sint)/sizeof(sint[0]); i ++){
         if(sintoma == sint[i]){
             int ocupaCovid = stoi(ocupacionCovid) + num;
             ocupacionCovid = to_string(ocupaCovid);
+            cout << "Se agregó al paciente con éxito" << endl;
             return ocupaCovid;
         }
     }
@@ -91,11 +91,12 @@ int Covid::agregar_pacientes(int num){
 * @param int num con la cantidad de pacientes a quitar
 * @return int ocupacionCovid con la cantidad de espacios ocupados
 */
-int Covid::quitar_pacientes(int num){
+int Covid::quitar_pacientes(int num, string sintoma){
     for(int i = 0; i < sizeof(sint)/sizeof(sint[0]); i ++){
         if(sintoma == sint[i]){
             int ocupaCovid = stoi(ocupacionCovid) - num;
             ocupacionCovid = to_string(ocupaCovid);
+            cout << "Se quitó al paciente con éxito" << endl;
             return ocupaCovid;
         }
     }
@@ -122,22 +123,20 @@ float Covid::porcentaje_ocupacion(){
 class Urgencias : public Departamento{
     private:
         string sit[3] = {"Envenenamiento", "Convulsiones", "Señal de infarto"},
-        situacion, ocupacionUrgencias;
+        ocupacionUrgencias;
 
     public:
         //Constructor por default
         Urgencias(): Departamento("", "", "") {};
         //Sobrecarga del constructor por default
-        Urgencias(string t, string a, string c, string o, string s) : 
+        Urgencias(string t, string a, string c, string o) : 
         Departamento(t, a, c){
             ocupacionUrgencias = o;
-            situacion = s;
         };
         //getters para los atributos privados
-        string get_sintoma(){ return situacion;}
         string* get_situacion(){ return sit;}
-        int agregar_pacientes(int num);
-        int quitar_pacientes(int num);
+        int agregar_pacientes(int num, string s);
+        int quitar_pacientes(int num, string s);
         float porcentaje_ocupacion();
 };
 
@@ -147,11 +146,12 @@ class Urgencias : public Departamento{
 * @param int num con la cantidad de pacientes a agregar
 * @return int ocupacionUrgencias con la cantidad de espacios ocupados
 */
-int Urgencias::agregar_pacientes(int num){
+int Urgencias::agregar_pacientes(int num, string situacion){
     for(int i = 0; i < sizeof(sit)/sizeof(sit[0]); i ++){
         if(situacion == sit[i]){
             int ocupaUr = stoi(ocupacionUrgencias) + num;
             ocupacionUrgencias = to_string(ocupaUr);
+            cout << "Se agregó al paciente con éxito" << endl;
             return ocupaUr;
         }
     }
@@ -164,11 +164,12 @@ int Urgencias::agregar_pacientes(int num){
 * @param int num con la cantidad de pacientes a quitar
 * @return int ocupacionUrgencias con la cantidad de espacios ocupados
 */
-int Urgencias::quitar_pacientes(int num){
+int Urgencias::quitar_pacientes(int num, string situacion){
     for(int i = 0; i < sizeof(sit)/sizeof(sit[0]); i ++){
         if(situacion == sit[i]){
             int ocupaUr = stoi(ocupacionUrgencias) - num;
             ocupacionUrgencias = to_string(ocupaUr);
+            cout << "Se quitó al paciente con éxito" << endl;
             return ocupaUr;
         }
     }
@@ -194,23 +195,21 @@ float Urgencias::porcentaje_ocupacion(){
 */
 class Quirofano : public Departamento{
     private:
-        string cir[3] = {"Dr. Javier", "Dra. Azul", "Dr. José"}, sintoma, 
+        string cir[3] = {"Javier", "Azul", "José"}, 
         ocupacionQuirofano;
 
     public:
         //Constructor por default
         Quirofano(): Departamento("", "", "") {};
         //Sobrecarga del constructor por default
-        Quirofano(string t, string a, string c, string o, string s) : 
+        Quirofano(string t, string a, string c, string o) : 
         Departamento(t, a, c){
             ocupacionQuirofano = o;
-            sintoma = s;
         };
         //getters para los atributos privados
-        string get_sintoma(){ return sintoma;}
         string* get_sintomas(){ return cir;}
-        int agregar_pacientes(int num);
-        int quitar_pacientes(int num);
+        int agregar_pacientes(int num, string s);
+        int quitar_pacientes(int num, string s);
         float porcentaje_ocupacion();
 };
 
@@ -220,11 +219,12 @@ class Quirofano : public Departamento{
 * @param int num con la cantidad de pacientes a agregar
 * @return int ocupacionQuirofano con la cantidad de espacios ocupados
 */
-int Quirofano::agregar_pacientes(int num){
+int Quirofano::agregar_pacientes(int num, string sintoma){
     for(int i = 0; i < sizeof(cir)/sizeof(cir[0]); i ++){
         if(sintoma == cir[i]){
             int ocupaQuir = stoi(ocupacionQuirofano) + num;
             ocupacionQuirofano = to_string(ocupaQuir);
+            cout << "Se agregó al paciente con éxito" << endl;
             return ocupaQuir;
         }
     }
@@ -237,11 +237,12 @@ int Quirofano::agregar_pacientes(int num){
 * @param int num con la cantidad de pacientes a quitar
 * @return int ocupacionQuirofano con la cantidad de espacios ocupados
 */
-int Quirofano::quitar_pacientes(int num){
+int Quirofano::quitar_pacientes(int num, string sintoma){
     for(int i = 0; i < sizeof(cir)/sizeof(cir[0]); i ++){
         if(sintoma == cir[i]){
             int ocupaQuir = stoi(ocupacionQuirofano) - num;
             ocupacionQuirofano = to_string(ocupaQuir);
+            cout << "Se quitó al paciente con éxito" << endl;
             return ocupaQuir;
         }
     }
@@ -267,22 +268,20 @@ float Quirofano::porcentaje_ocupacion(){
 */
 class General : public Departamento{
     private:
-        string cita[3] = {"1234", "5678", "9123"}, sintoma, ocupacionGeneral;
+        string cita[3] = {"a234", "b678", "c123"}, ocupacionGeneral;
 
     public:
         //Constructor por default
         General(): Departamento("", "", "") {};
         //Sobrecarga del constructor por default
-        General(string t, string a, string c, string o, string s) : 
+        General(string t, string a, string c, string o) : 
         Departamento(t, a, c){
             ocupacionGeneral = o;
-            sintoma = s;
         };
         //getters para los atributos privados
-        string get_sintoma(){ return sintoma;}
         string* get_sintomas(){ return cita;}
-        int agregar_pacientes(int num);
-        int quitar_pacientes(int num);
+        int agregar_pacientes(int num, string s);
+        int quitar_pacientes(int num, string s);
         float porcentaje_ocupacion();
 };
 
@@ -292,11 +291,12 @@ class General : public Departamento{
 * @param int num con la cantidad de pacientes a agregar
 * @return int ocupacionGeneral con la cantidad de espacios ocupados
 */
-int General::agregar_pacientes(int num){
+int General::agregar_pacientes(int num, string sintoma){
     for(int i = 0; i < sizeof(cita)/sizeof(cita[0]); i ++){
         if(sintoma == cita[i]){
             int ocupaGen = stoi(ocupacionGeneral) + num;
             ocupacionGeneral = to_string(ocupaGen);
+            cout << "Se agregó al paciente con éxito" << endl;
             return ocupaGen;
         }
     }
@@ -309,11 +309,12 @@ int General::agregar_pacientes(int num){
 * @param int num con la cantidad de pacientes a quitar
 * @return int ocupacionGeneral con la cantidad de espacios ocupados
 */
-int General::quitar_pacientes(int num){
+int General::quitar_pacientes(int num, string sintoma){
     for(int i = 0; i < sizeof(cita)/sizeof(cita[0]); i ++){
         if(sintoma == cita[i]){
             int ocupaGen = stoi(ocupacionGeneral) - num;
             ocupacionGeneral = to_string(ocupaGen);
+            cout << "Se quitó al paciente con éxito" << endl;
             return ocupaGen;
         }
     }

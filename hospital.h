@@ -35,7 +35,7 @@ class Hospital{
         Hospital(string c, string n, string d, string t);
         void genera_ejemplos();
         void bienvenida();
-        void actualiza_pacientes(string t, string opc, int num);
+        void actualiza_pacientes(string t, string opc, int num, string s);
         float consulta_capacidad(string t);
 };
 
@@ -67,36 +67,40 @@ void Hospital::bienvenida(){
  */
 void Hospital::genera_ejemplos(){
     int i = 0;
-    depto[i] = new Covid("Covid", "Norte", "1000", "284", "Fiebre");
+    depto[i] = new Covid("Covid", "Norte", "1000", "284");
     i ++;
-    depto[i] = new Urgencias("Urgencias", "Sur", "100", "47", "Convulsiones");
+    depto[i] = new Urgencias("Urgencias", "Sur", "100", "47");
     i ++;
-    depto[i] = new Quirofano("Quirofano", "Este", "78", "21", "Dra. Azul");
+    depto[i] = new Quirofano("Quirofano", "Este", "78", "21");
     i ++;
-    depto[i] = new General("General", "Oeste", "2500", "2345", "1234");
+    depto[i] = new General("General", "Oeste", "2500", "2345");
     i ++;
 } 
 
 /**
- * Recorre el arreglo buscando coincidencia en el tipo de departemento, al
+ * Recorre el arreglo buscando coincidencia en el tipo de departamento, al
  * encontrarlo llama a la función para agregar o quitar en base a la opción 
  * seleccionada
  * 
  * @param string t, string opc, int num
  * @return
  */
-void Hospital::actualiza_pacientes(string t, string opc, int num){
+void Hospital::actualiza_pacientes(string t, string opc, int num, string s){
     if(opc == "1"){
         for(int i = 0; i < sizeof(depto)/sizeof(depto[0]); i ++){
             if(depto[i] -> get_tipo() == t){
-                depto[i] -> agregar_pacientes(num);
+                cout << "\nPacientes actualizados en " << t << endl;
+                cout << depto[i] -> agregar_pacientes(num, s) << " pacientes" 
+                << endl;
             }
         }
     }
     else if(opc == "2"){
         for(int i = 0; i < sizeof(depto)/sizeof(depto[0]); i ++){
             if(depto[i] -> get_tipo() == t){
-                depto[i] -> quitar_pacientes(num);
+                cout << "\nPacientes actualizados en " << t << endl;
+                cout << depto[i] -> quitar_pacientes(num, s) << " pacientes" <<
+                endl;
             }
         }
     }
